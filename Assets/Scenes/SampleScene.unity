@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4144e824de3447248829790aaa3f7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\xE5ben_d\xF8r": 0
 --- !u!61 &188529807
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -261,28 +260,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &516944757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2073164870874620385, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117472013}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &516944761
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516944757}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0006842017, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08836899
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +313,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1.5801316
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1568,20 +1545,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 2073164870874620385, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
-        type: 3}
-      propertyPath: m_TagString
-      value: player
-      objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.616
+      value: -0.593
       objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.269
+      value: 0.036
       objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
