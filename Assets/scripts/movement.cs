@@ -33,7 +33,7 @@ public class movement : MonoBehaviour
     void Update()
     {
         rb.freezeRotation = true;
-        Debug.Log(state);
+        //Debug.Log(state);
         states();
         moveInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rb.MovePosition(transform.position + moveInput * speed * Time.deltaTime);
@@ -56,7 +56,7 @@ public class movement : MonoBehaviour
         {
             state = movementState.left;
         }
-        Debug.Log(transform.eulerAngles.z);
+        //Debug.Log(transform.eulerAngles.z);
         stateLastFrame = state;
         if (transform.eulerAngles.z > 170 && transform.eulerAngles.z < 190 && rotateLeft == false && rotateRight == false)
         {
@@ -122,8 +122,8 @@ public class movement : MonoBehaviour
         {
             state = movementState.forwards;
         }
-        Debug.Log(state + " state");
-        Debug.Log(state + " state last frame");
+        //Debug.Log(state + " state");
+        //Debug.Log(state + " state last frame");
 
         if (state == movementState.left && stateLastFrame == movementState.forwards)
         {
@@ -204,7 +204,7 @@ public class movement : MonoBehaviour
     }
     void rotateLeft90()
     {
-        Debug.Log("ROTATELEFT90");
+        //Debug.Log("ROTATELEFT90");
         Invoke("resetList", 1);
         float intialRotate = transform.localRotation.z;
         canRotate = false;
@@ -214,7 +214,7 @@ public class movement : MonoBehaviour
     }
     void rotateRight90()
     {
-        Debug.Log("ROTATERIGHT90");
+        //Debug.Log("ROTATERIGHT90");
         Invoke("resetList", 1);
         canRotate = false;
         rotateLeft = false;
@@ -222,7 +222,7 @@ public class movement : MonoBehaviour
     }
     void rotateLeft180()
     {
-        Debug.Log("ROTATELEFT180");
+        //Debug.Log("ROTATELEFT180");
         Invoke("resetList", 2);
         canRotate = false;
         rotateLeft = true;
@@ -230,7 +230,7 @@ public class movement : MonoBehaviour
     }
     void rotateRight180()
     {
-        Debug.Log("ROTATERIGH180");
+        //Debug.Log("ROTATERIGH180");
         Invoke("resetList", 2);
         canRotate = false;
         rotateLeft = false;
@@ -238,7 +238,7 @@ public class movement : MonoBehaviour
     }
     void resetList()
     {
-        Debug.Log("reset list");
+        //Debug.Log("reset list");
         canRotate = false;
         rotateLeft = false;
         rotateRight = false;
