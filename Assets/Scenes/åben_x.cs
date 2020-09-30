@@ -10,6 +10,7 @@ public class åben_x : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        anim.SetBool("åben", true);
     }
 
     // Update is called once per frame
