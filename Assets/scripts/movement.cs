@@ -128,50 +128,50 @@ public class movement : MonoBehaviour
         if (state == movementState.left && stateLastFrame == movementState.forwards)
         {
             //anim.Play("forwardToLeft");
-            rotateLeft90();
+            //rotateLeft90();
             //transform.Rotate(-Vector3.forward * 10 * Time.deltaTime);
             //anim.SetFloat("Blend2", -1.5f);
             //Debug.Log("state 1");
         }
         else if (state == movementState.left && stateLastFrame == movementState.backwards)
         {
-            rotateLeft90();
+            //rotateLeft90();
             //anim.Play("BackToLeft");
             //anim.SetFloat("Blend2", -0.5f);
         }
         else if (state == movementState.forwards && stateLastFrame == movementState.left)
         {
-            rotateRight90();
+            //rotateRight90();
             //anim.Play("LeftToForward");
             //anim.SetFloat("Blend2", -3f);
         }
         else if (state == movementState.forwards && stateLastFrame == movementState.right)
         {
-            rotateLeft90();
+            //rotateLeft90();
             // anim.Play("RightToForward");
             //anim.SetFloat("Blend2", -4f);
         }
         else if (state == movementState.right && stateLastFrame == movementState.forwards)
         {
-            rotateRight90();
+            //rotateRight90();
             //anim.Play("forwardToRight");
             //anim.SetFloat("Blend2", -2f);
         }
         else if (state == movementState.backwards && stateLastFrame == movementState.right)
         {
-            rotateRight90();
+            //rotateRight90();
             //anim.Play("RightToBack");
             //anim.SetFloat("Blend2", -3.5f);
         }
         else if (state == movementState.backwards && stateLastFrame == movementState.left)
         {
-            rotateLeft90();
+            //rotateLeft90();
             //anim.Play("LeftToBack");
             //anim.SetFloat("Blend2", -2.5f);
         }
         else if (state == movementState.right && stateLastFrame == movementState.backwards)
         {
-            rotateLeft90();
+            //rotateLeft90();
             //anim.Play("BackToRight");
             //anim.SetFloat("Blend2", -1f);
         }
@@ -183,25 +183,26 @@ public class movement : MonoBehaviour
             {
                 anim.SetFloat("Blend2", -6 - i);
             }*/
-            rotateLeft180();
+            //rotateLeft180();
         }
         else if (state == movementState.left && stateLastFrame == movementState.right)
         {
             //anim.SetFloat("Blend2", -5.5f);
-            rotateLeft180();
+            //rotateLeft180();
         }
         else if (state == movementState.backwards && stateLastFrame == movementState.forwards)
         {
             //anim.SetFloat("Blend2", -5f);
-            rotateLeft180();
+            //rotateLeft180();
         }
         else if (state == movementState.forwards && stateLastFrame == movementState.backwards)
         {
             //anim.SetFloat("Blend2", -4.5f);
-            rotateLeft180();
+            //rotateLeft180();
         }
 
     }
+    /*
     void rotateLeft90()
     {
         //Debug.Log("ROTATELEFT90");
@@ -242,5 +243,7 @@ public class movement : MonoBehaviour
         canRotate = false;
         rotateLeft = false;
         rotateRight = false;
-    }
+    }*/
+
 }
+
