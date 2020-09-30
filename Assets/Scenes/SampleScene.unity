@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 188529809}
   - component: {fileID: 188529808}
   - component: {fileID: 188529807}
-  - component: {fileID: 188529806}
   - component: {fileID: 188529810}
+  - component: {fileID: 188529806}
   m_Layer: 0
   m_Name: New Piskel (1)
   m_TagString: Untagged
@@ -149,9 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 188529805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4144e824de3447248829790aaa3f7f3, type: 3}
+  m_Script: {fileID: 11500000, guid: eaaf8c725f3434af89d9b43e630f76a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "\xE5ben_d\xF8r": 0
 --- !u!61 &188529807
 BoxCollider2D:
   m_ObjectHideFlags: 0
