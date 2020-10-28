@@ -5,13 +5,13 @@ using UnityEngine;
 public class fjendeAi : MonoBehaviour
 {
 
+    public float rotationSpeed;
+    public Transform player;
     public Animator anim;//1 leftRight 2 rightLeft 3 UpDown 4 DownUp
     bool isAnim = false;
     public bool OneorTwo = true;
-    public float rotationSpeed = 1;
     private bool canMove = true;
     public float startingrotation = 0;
-    public float sleepAtEnd = 2f;
     private bool movinBack = false;
     public float patrolingSpeed = 10.0f;
     public Vector3 startingPoint;
@@ -52,13 +52,11 @@ public class fjendeAi : MonoBehaviour
             {
                 if (movinBack == false && canMove == true)
                 {
-                    //transform.rotation = Quaternion.Euler(0, 0, startingrotation);
                     if (transform.position.x == startingPoint.x) { movinBack = true; canMove = false; }
                     transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
                 }
                 else if (movinBack == true && canMove == true)
                 {
-                    //transform.rotation = Quaternion.Euler(0, 0, startingrotation + 180);
                     if (transform.position.x == finishingPoint.x) { movinBack = false; canMove = false; }
                     transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                 }
@@ -92,20 +90,36 @@ public class fjendeAi : MonoBehaviour
                     }
                 }
             }
+            else if (State == state.hunting)
+            {
+                if (player.position.y > transform.position.y)
+                {
+                    Debug.Log("u're r hunting the fucking player on the Up axis");
+                    transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    Debug.Log("u're r hunting the fucking player on the Down axis");
+                    transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+                }
+            }
+            else if(State == state.attacking)
+            {
+                Debug.Log("u're r attacking the fucking player");
+            }
         }
         else//working with Y
         {
+            Debug.Log(State);
             if (State == state.patrol)
             {
                 if (movinBack == false && canMove == true)
                 {
-                    //transform.rotation = Quaternion.Euler(0, 0, startingrotation);
                     if (transform.position.y == startingPoint.y) { movinBack = true; canMove = false; }
                     transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
                 }
                 else if (movinBack == true && canMove == true)
                 {
-                    //transform.rotation = Quaternion.Euler(0, 0, startingrotation + 180);
                     if (transform.position.y == finishingPoint.y) { movinBack = false; canMove = false; }
                     transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                 }
@@ -139,14 +153,22 @@ public class fjendeAi : MonoBehaviour
                     }
                 }
             }
+            else if (State == state.hunting)
+            {
+                Debug.Log("u're r hunting the fucking player");
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag == "player")
-        {
-            Debug.Log("You hit da fucking player");
-        }
+        if (coll.tag == "player" && GetComponent<BoxCollider2D>().IsTouching(coll)) { State = state.attacking; }
+        else if (coll.tag == "player" && GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.hunting; }
+    }
+
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.tag == "player" && !GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.patrol; }
+        else if (coll.tag == "player" && !GetComponent<BoxCollider2D>().IsTouching(coll)) { State = state.hunting; }
     }
     void updateMesh()
     {
@@ -172,6 +194,5 @@ public class fjendeAi : MonoBehaviour
         isAnim = false;
         canMove = true;
         startingrotation += 180;
-        Debug.Log("setFalse");
     }
 }
