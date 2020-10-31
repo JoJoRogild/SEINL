@@ -8,7 +8,6 @@ public class fjendeAi : MonoBehaviour
     public float rotationSpeed;
     public Transform player;
     public Animator anim;//1 leftRight 2 rightLeft 3 UpDown 4 DownUp
-    bool isAnim = false;
     public bool OneorTwo = true;
     private bool canMove = true;
     public float startingrotation = 0;
@@ -19,6 +18,10 @@ public class fjendeAi : MonoBehaviour
     public bool XORY;
     public Material mat;
     public GameObject meshStuff;
+    public LayerMask lm;
+    private Rigidbody2D rb;
+    public float chansingSpeed;
+    private bool isAnim;
     enum state
     {
         patrol,
@@ -26,11 +29,12 @@ public class fjendeAi : MonoBehaviour
         suspicicous,
         hunting,
         attacking,
-        returning      
+        returning
     }
     state State = new state();
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim.SetBool("XorY", XORY);
         anim.SetBool("1or2", OneorTwo);
         State = state.patrol;
@@ -39,13 +43,11 @@ public class fjendeAi : MonoBehaviour
 
     void Update()
     {
-        transform.eulerAngles = new Vector3(0, 0, startingrotation);
         move();
         updateMesh();
     }
     void move()
     {
-        if (isAnim == true) { return; }
         if (XORY == false)//working with X
         {
             if (State == state.patrol)
@@ -92,18 +94,28 @@ public class fjendeAi : MonoBehaviour
             }
             else if (State == state.hunting)
             {
-                if (player.position.y > transform.position.y)
-                {
-                    Debug.Log("u're r hunting the fucking player on the Up axis");
-                    transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    Debug.Log("u're r hunting the fucking player on the Down axis");
-                    transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
-                }
+                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 3f, lm);
+                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), 3f, lm);
+                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 55)), 3f, lm);
+                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 35)), 3f, lm);
+                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), 3f, lm);
+                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), 3f, lm);
+                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), 3f, lm);
+                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -35)), 3f, lm);
+                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -55)), 3f , lm);
+
+                if (leftFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (leftMiddleFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (leftMiddle) {transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (left && !middle) {Debug.Log("left"); transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightMiddleFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightMiddle) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (right && !middle) {Debug.Log("right"); transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (middle) { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+
             }
-            else if(State == state.attacking)
+            else if (State == state.attacking)
             {
                 Debug.Log("u're r attacking the fucking player");
             }
@@ -161,14 +173,12 @@ public class fjendeAi : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag == "player" && GetComponent<BoxCollider2D>().IsTouching(coll)) { State = state.attacking; }
-        else if (coll.tag == "player" && GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.hunting; }
+        if (coll.tag == "player" && GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.hunting; anim.enabled = false; }
     }
 
     void OnTriggerExit2D(Collider2D coll)
     {
-        if (coll.tag == "player" && !GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.patrol; }
-        else if (coll.tag == "player" && !GetComponent<BoxCollider2D>().IsTouching(coll)) { State = state.hunting; }
+        if (coll.tag == "player") { State = state.patrol; }
     }
     void updateMesh()
     {
