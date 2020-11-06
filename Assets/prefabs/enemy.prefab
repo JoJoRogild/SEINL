@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 2879927621142503333}
   - component: {fileID: 2879927621142503330}
   - component: {fileID: 2879927621142503329}
+  - component: {fileID: 1062751360}
+  - component: {fileID: 1062751354}
+  - component: {fileID: 1062751361}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -97,17 +100,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e2ce77b3a7b144c86ff9f835c95031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lmstart:
+    serializedVersion: 2
+    m_Bits: 512
+  fuckDaGovernment: {fileID: 729852561332129739, guid: 054b3869b431f154bbde9ba3a8860691,
+    type: 3}
+  rotationSpeed: 100
+  player: {fileID: 0}
   anim: {fileID: 2879927621142503329}
   OneorTwo: 1
-  rotationSpeed: 0.1
   startingrotation: 0
-  sleepAtEnd: 2
   patrolingSpeed: 1
   startingPoint: {x: 0, y: 0, z: 0}
-  finishingPoint: {x: 0, y: 0, z: 0}
+  finishingPoint: {x: 1, y: 0, z: 0}
   XORY: 0
   mat: {fileID: 2100000, guid: 1c2c36ddc5b472040a8f3261436e27af, type: 2}
   meshStuff: {fileID: 2879927621575504625}
+  lm:
+    serializedVersion: 2
+    m_Bits: 256
+  chansingSpeed: 2.2
 --- !u!60 &2879927621142503330
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -133,10 +145,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.05, y: 0.04}
+    - - {x: 0.1004647, y: 0.06365535}
       - {x: 0.6, y: 0.25}
       - {x: 0.6, y: -0.25}
-      - {x: 0.05, y: -0.04}
+      - {x: 0.09888767, y: -0.06444384}
 --- !u!95 &2879927621142503329
 Animator:
   serializedVersion: 3
@@ -156,6 +168,69 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &1062751360
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621142503334}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000000
+  m_LinearDrag: 0
+  m_AngularDrag: 1000000
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &1062751354
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621142503334}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.088
+--- !u!61 &1062751361
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621142503334}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.2, y: 0.2}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.18}
+  m_EdgeRadius: 0
 --- !u!1 &2879927621575504625
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +242,9 @@ GameObject:
   - component: {fileID: 2879927621575504624}
   - component: {fileID: 2879927621575504622}
   - component: {fileID: 2879927621575504623}
+  - component: {fileID: 1360605258}
+  - component: {fileID: 1360605260}
+  - component: {fileID: 1360605259}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -234,6 +312,62 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!58 &1360605258
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621575504625}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.5, y: 0.6}
+  serializedVersion: 2
+  m_Radius: 0.85
+--- !u!61 &1360605260
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621575504625}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.5, y: 0.6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &1360605259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927621575504625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a4648dde079b44b86e7d88b56e1fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  enemy: {fileID: 2879927621142503334}
 --- !u!1 &2879927622283938632
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2879927622283938631}
   - component: {fileID: 2879927622283938630}
+  - component: {fileID: 1372488842}
   m_Layer: 0
   m_Name: New Sprite (1)
   m_TagString: Untagged
@@ -314,3 +449,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1372488842
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879927622283938632}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.84

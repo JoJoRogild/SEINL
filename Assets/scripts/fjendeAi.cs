@@ -1,10 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class fjendeAi : MonoBehaviour
 {
 
+    public LayerMask lmstart;
+    public GameObject fuckDaGovernment;
     public float rotationSpeed;
     public Transform player;
     public Animator anim;//1 leftRight 2 rightLeft 3 UpDown 4 DownUp
@@ -21,7 +22,8 @@ public class fjendeAi : MonoBehaviour
     public LayerMask lm;
     private Rigidbody2D rb;
     public float chansingSpeed;
-    private bool isAnim;
+    private bool can = false;
+
     enum state
     {
         patrol,
@@ -52,42 +54,57 @@ public class fjendeAi : MonoBehaviour
         {
             if (State == state.patrol)
             {
-                if (movinBack == false && canMove == true)
+                if (OneorTwo == true)
                 {
-                    if (transform.position.x == startingPoint.x) { movinBack = true; canMove = false; }
-                    transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
-                }
-                else if (movinBack == true && canMove == true)
-                {
-                    if (transform.position.x == finishingPoint.x) { movinBack = false; canMove = false; }
-                    transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    if (OneorTwo == true)
+                    if (movinBack == false && canMove == true)
+                    {
+                        float x = Mathf.Floor(transform.position.x);
+                        x = transform.position.x - x;
+                        x *= 10;
+                        if (Mathf.Floor(transform.position.x) == startingPoint.x && Mathf.Floor(x) == startingPoint.x) { movinBack = true; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else if (movinBack == true && canMove == true)
+                    {
+                        if (Mathf.Floor(transform.position.x) == finishingPoint.x) { movinBack = false; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else
                     {
                         if (movinBack == true)
                         {
                             anim.SetBool("leftRight", true);
-                            isAnim = true;
                         }
                         else
                         {
                             anim.SetBool("rightLeft", true);
-                            isAnim = true;
                         }
+                    }
+                }
+                else
+                {
+                    if (movinBack == false && canMove == true)
+                    {
+                        if (transform.position.x == startingPoint.x) { movinBack = true; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else if (movinBack == true && canMove == true)
+                    {
+                        float x = Mathf.Floor(transform.position.x);
+                        x = transform.position.x - x;
+                        x *= 10;
+                        if (Mathf.Floor(transform.position.x) == finishingPoint.x && Mathf.Floor(x) == finishingPoint.x ) { movinBack = false; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else
                     {
                         if (movinBack == true)
                         {
                             anim.SetBool("rightLeft", true);
-                            isAnim = true;
                         }
                         else
                         {
                             anim.SetBool("leftRight", true);
-                            isAnim = true;
                         }
                     }
                 }
@@ -107,78 +124,128 @@ public class fjendeAi : MonoBehaviour
                 if (leftFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (leftMiddleFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (leftMiddle) {transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
-                else if (left && !middle) {Debug.Log("left"); transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (left && !middle) {transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (rightFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (rightMiddleFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (rightMiddle) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
-                else if (right && !middle) {Debug.Log("right"); transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (right && !middle) {transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (middle) { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
 
             }
-            else if (State == state.attacking)
+            else if (State == state.returning)
             {
-                Debug.Log("u're r attacking the fucking player");
+                if(GameObject.Find("fuckDaGovernment(Clone)") == null) { Instantiate(fuckDaGovernment, startingPoint, Quaternion.identity); }
+                else
+                {
+                    RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 3f, lmstart);
+                    Debug.DrawRay(transform.position, new Vector2(180, 0), Color.green);
+                    if (!middle) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); }
+                    else { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                }
             }
         }
         else//working with Y
         {
-            Debug.Log(State);
             if (State == state.patrol)
             {
-                if (movinBack == false && canMove == true)
+                if (OneorTwo == true)
                 {
-                    if (transform.position.y == startingPoint.y) { movinBack = true; canMove = false; }
-                    transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
-                }
-                else if (movinBack == true && canMove == true)
-                {
-                    if (transform.position.y == finishingPoint.y) { movinBack = false; canMove = false; }
-                    transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    if (OneorTwo == true)
+                    if (movinBack == false && canMove == true)
+                    {
+                        float y = Mathf.Floor(transform.position.y);
+                        y = transform.position.y - y;
+                        if (Mathf.Floor(transform.position.y) == startingPoint.y && Mathf.Floor(y * 10) == startingPoint.y) { movinBack = true; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else if (movinBack == true && canMove == true)
+                    {
+                        if (Mathf.Floor(transform.position.y) == finishingPoint.y) { movinBack = false; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else
                     {
                         if (movinBack == true)
                         {
                             anim.SetBool("DownUp", true);
-                            isAnim = true;
                         }
                         else
                         {
                             anim.SetBool("UpDown", true);
-                            isAnim = true;
                         }
+                    }
+                }
+                else
+                {
+                    if (movinBack == false && canMove == true)
+                    {
+                        if (Mathf.Floor(transform.position.y) == startingPoint.y) { movinBack = true; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
+                    }
+                    else if (movinBack == true && canMove == true)
+                    {
+                        float y = Mathf.Floor(transform.position.y);
+                        y = transform.position.y - y;
+                        if (Mathf.Floor(transform.position.y) == finishingPoint.y && Mathf.Floor(y * 10) == finishingPoint.y) { movinBack = false; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else
                     {
                         if (movinBack == true)
                         {
                             anim.SetBool("UpDown", true);
-                            isAnim = true;
                         }
                         else
                         {
                             anim.SetBool("DownUp", true);
-                            isAnim = true;
                         }
                     }
                 }
             }
             else if (State == state.hunting)
             {
-                Debug.Log("u're r hunting the fucking player");
+                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 4f, lm);
+                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), 4f, lm);
+                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 55)), 4f, lm);
+                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 35)), 4f, lm);
+                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), 4f, lm);
+                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), 4f, lm);
+                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), 3f, lm);
+                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -35)), 4f, lm);
+                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -55)), 4f, lm);
+
+                if (leftFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (leftMiddleFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (leftMiddle) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (left && !middle) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightMiddleFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (rightMiddle) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (right && !middle) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (middle) { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+
+            }
+            else if (State == state.returning)
+            {
+                if (GameObject.Find("fuckDaGovernment(Clone)") == null) { Instantiate(fuckDaGovernment, startingPoint, Quaternion.identity); }
+                else
+                {
+                    RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), Mathf.Infinity, lmstart);
+                    Debug.DrawRay(transform.position, new Vector2(180, 0), Color.green);
+                    if (!middle) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); }
+                    else { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                }
             }
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag == "player" && GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.hunting; anim.enabled = false; }
+        if (coll.tag == "player" && GetComponent<PolygonCollider2D>().IsTouching(coll)) { State = state.hunting; anim.enabled = false; can = false; }
     }
 
     void OnTriggerExit2D(Collider2D coll)
     {
-        if (coll.tag == "player") { State = state.patrol; }
+        if (coll.tag == "player") { State = state.returning; can = true; }
     }
     void updateMesh()
     {
@@ -195,14 +262,42 @@ public class fjendeAi : MonoBehaviour
         meshStuff.GetComponent<MeshRenderer>().material = mat;
         meshStuff.GetComponent<MeshFilter>().mesh = mesh;
     }
-    void setFalse()
+    public void setFalse()
     {
         anim.SetBool("leftRight", false);
         anim.SetBool("rightLeft", false);
         anim.SetBool("UpDown", false);
         anim.SetBool("DownUp", false);
-        isAnim = false;
         canMove = true;
         startingrotation += 180;
+    }
+    public void setState()
+    {
+        if(State != state.returning || can == false) { return; }
+        State = state.patrol;
+        transform.position = startingPoint;
+        canMove = true;
+        anim.enabled = true;
+        can = false;
+        if (XORY == false && OneorTwo == true)
+        {
+            movinBack = true;
+            anim.SetBool("leftRight", true);
+        }
+        else if (XORY == false && OneorTwo == false) 
+        {
+            movinBack = true;
+            anim.SetBool("rightLeft", true);
+        }
+        else if (XORY == true && OneorTwo == true)
+        {
+            movinBack = false;
+            anim.SetBool("DownUp", true);
+        }
+        else if (XORY == true && OneorTwo == false)
+        {
+            movinBack = true;
+            anim.SetBool("UpDown", true);
+        }
     }
 }

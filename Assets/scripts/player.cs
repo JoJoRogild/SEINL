@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class huntingPlayer : MonoBehaviour
+public class player : MonoBehaviour
 {
-    public void OnTriggerEnter2D(Collider2D coll)
+    public void deadboy()
     {
+        print("dead");
     }
 }
