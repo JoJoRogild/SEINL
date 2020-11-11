@@ -111,18 +111,22 @@ public class fjendeAi : MonoBehaviour
             }
             else if (State == state.hunting)
             {
-                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 3f, lm);
-                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), 3f, lm);
-                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 55)), 3f, lm);
-                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 35)), 3f, lm);
-                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), 3f, lm);
-                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), 3f, lm);
-                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), 3f, lm);
-                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -35)), 3f, lm);
-                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -55)), 3f , lm);
+
+                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), Mathf.Infinity, lm);
+                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 92)), Mathf.Infinity, lm);
+                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), Mathf.Infinity, lm);
+                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 56)), Mathf.Infinity, lm);
+                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), Mathf.Infinity, lm);
+                RaycastHit2D leftAlittleSomethin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 40)), Mathf.Infinity, lm);
+                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -92)), Mathf.Infinity, lm);
+                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), Mathf.Infinity, lm);
+                RaycastHit2D rightALittleSomthin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -40)), Mathf.Infinity, lm);
+                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -56)), Mathf.Infinity, lm);
+                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), Mathf.Infinity, lm);
+
 
                 if (leftFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
-                else if (leftMiddleFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
+                else if (leftMiddleFar) { Debug.Log("idk"); transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (leftMiddle) {transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (left && !middle) {transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
                 else if (rightFar) { transform.Rotate(0, 0, -1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
@@ -137,7 +141,7 @@ public class fjendeAi : MonoBehaviour
                 if(GameObject.Find("fuckDaGovernment(Clone)") == null) { Instantiate(fuckDaGovernment, startingPoint, Quaternion.identity); }
                 else
                 {
-                    RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 3f, lmstart);
+                    RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), Mathf.Infinity, lmstart);
                     Debug.DrawRay(transform.position, new Vector2(180, 0), Color.green);
                     if (!middle) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); }
                     else { rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
