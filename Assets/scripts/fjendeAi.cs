@@ -112,17 +112,17 @@ public class fjendeAi : MonoBehaviour
             else if (State == state.hunting)
             {
 
-                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), Mathf.Infinity, lm);
-                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 92)), Mathf.Infinity, lm);
-                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), Mathf.Infinity, lm);
-                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 56)), Mathf.Infinity, lm);
-                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), Mathf.Infinity, lm);
-                RaycastHit2D leftAlittleSomethin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 40)), Mathf.Infinity, lm);
-                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -92)), Mathf.Infinity, lm);
-                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), Mathf.Infinity, lm);
-                RaycastHit2D rightALittleSomthin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -40)), Mathf.Infinity, lm);
-                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -56)), Mathf.Infinity, lm);
-                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), Mathf.Infinity, lm);
+                RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), 10, lm);
+                RaycastHit2D leftFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 92)), 10, lm);
+                RaycastHit2D leftMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 75)), 10, lm);
+                RaycastHit2D leftMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 56)), 10, lm);
+                RaycastHit2D left = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 20)), 10, lm);
+                RaycastHit2D leftAlittleSomethin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 40)), 10, lm);
+                RaycastHit2D rightFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -92)), 10, lm);
+                RaycastHit2D right = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -20)), 10, lm);
+                RaycastHit2D rightALittleSomthin = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -40)), 10, lm);
+                RaycastHit2D rightMiddle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -56)), 10, lm);
+                RaycastHit2D rightMiddleFar = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, -75)), 10, lm);
 
 
                 if (leftFar) { transform.Rotate(0, 0, 1 * rotationSpeed * Time.deltaTime); rb.MovePosition(transform.position + transform.right * Time.deltaTime * chansingSpeed); }
