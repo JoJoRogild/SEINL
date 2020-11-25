@@ -323,6 +323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 444834510, guid: 9d3a8490b4b04e341baf646f7c77f4e9, type: 3}
+      propertyPath: spritemasker
+      value: 
+      objectReference: {fileID: 737327002}
     - target: {fileID: 1209212926, guid: 9d3a8490b4b04e341baf646f7c77f4e9, type: 3}
       propertyPath: spriteMasker
       value: 
@@ -335,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
@@ -603,6 +607,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 444834514}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: finishingPoint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: startingPoint.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503334, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: m_Name

@@ -83,6 +83,7 @@ public class fjendeAi : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log(movinBack);
                     if (movinBack == false && canMove == true)
                     {
                         if (transform.position.x == startingPoint.x) { movinBack = true; canMove = false; }
