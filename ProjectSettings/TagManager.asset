@@ -7,6 +7,7 @@ TagManager:
   - player
   - fuckDaGovernment
   - win
+  - briller
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - player
   - fuckDaGovernment
-  - 
+  - daTop
   - 
   - 
   - 
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 4173929879
+    locked: 0
+  - name: daTop
+    uniqueID: 3449953257
     locked: 0
