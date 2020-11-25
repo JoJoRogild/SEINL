@@ -7,9 +7,19 @@ public class deadScene : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-             SceneManager.LoadScene(PlayerPrefs.GetInt("level"));
+            if (Input.GetMouseButton(0))
+            {
+                SceneManager.LoadScene(PlayerPrefs.GetInt("level") + 1);
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                 SceneManager.LoadScene(PlayerPrefs.GetInt("level"));
+            }
         }
     }
 }

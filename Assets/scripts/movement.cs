@@ -53,4 +53,11 @@ public class movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.collider.tag == "win")
+        {
+            GetComponent<player>().winner();
+        }
+    }
 }

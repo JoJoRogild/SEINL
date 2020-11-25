@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/deathScene.unity
     guid: a3bedaf2e0b3c824590dc7a5ec6b443d
+  - enabled: 1
+    path: Assets/Scenes/MoveLevel.unity
+    guid: 8fbb427930b76604b9dc2830a124e2bf
+  - enabled: 1
+    path: Assets/Scenes/winning.unity
+    guid: b94ff7ae2d98dd441b1571c9e72ca00e
   m_configObjects: {}
