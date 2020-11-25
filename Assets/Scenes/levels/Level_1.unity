@@ -912,7 +912,7 @@ PrefabInstance:
     - target: {fileID: 2879927621142503331, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.07
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503331, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
@@ -977,7 +977,7 @@ PrefabInstance:
     - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: startingPoint.x
-      value: -7.225
+      value: -7.07
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
@@ -1003,11 +1003,16 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1764771572}
+      objectReference: {fileID: 2101495399}
     - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: startingrotation
-      value: 90
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: OneorTwo
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503334, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
