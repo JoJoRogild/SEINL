@@ -8,11 +8,10 @@ public class player : MonoBehaviour
 
     public GameObject spritemasker;
     public AudioSource dead22;
-    public int lastScene = 6;
+    private int lastScene = 1;
 
     public void deadboy()
     {
-        Debug.Log("dead dead");
         if (dead22.isPlaying == false) { dead22.Play(); Invoke("dead", 1.33f); spritemasker.transform.localScale = new Vector3(0, 0, 0); }
     }
 

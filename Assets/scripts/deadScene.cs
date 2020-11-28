@@ -7,8 +7,6 @@ public class deadScene : MonoBehaviour
 {
     void Update()
     {
-        PlayerPrefs.SetFloat("powerup", PlayerPrefs.GetFloat("powerup") - PlayerPrefs.GetInt("powerupThisLevel"));
-        PlayerPrefs.SetInt("powerupThisLevel", 0);
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             if (Input.GetMouseButton(0))
@@ -18,6 +16,7 @@ public class deadScene : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
+            PlayerPrefs.SetFloat("powerup", 16);
             if (Input.GetMouseButton(0))
             {
                  SceneManager.LoadScene(PlayerPrefs.GetInt("level"));

@@ -66,7 +66,6 @@ public class movement : MonoBehaviour
         else if (coll.gameObject.tag == "briller")
         {
             PlayerPrefs.SetFloat("powerup" ,spriteMasker.transform.localScale.x + 1);
-            PlayerPrefs.SetInt("powerupThisLevel", PlayerPrefs.GetInt("powerupThisLevel") + 1 );
             spriteMasker.transform.localScale = new Vector3(spriteMasker.transform.localScale.x + 1, spriteMasker.transform.localScale.y + 1, spriteMasker.transform.localScale.z);
             Destroy(coll.gameObject);
         }
