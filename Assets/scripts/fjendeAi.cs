@@ -155,10 +155,9 @@ public class fjendeAi : MonoBehaviour
                 {
                     if (movinBack == false && canMove == true)
                     {
-                        float y = Mathf.Floor(transform.position.y);
-                        y = transform.position.y - y;
-                        if (Mathf.Floor(transform.position.y) == startingPoint.y && Mathf.Floor(y * 10) == startingPoint.y) { movinBack = true; canMove = false; }
-                        transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
+                        float y = Mathf.Floor(transform.position.y * 10) / 10;
+                        if (y == finishingPoint.y) { movinBack = false; canMove = false; }
+                        transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else if (movinBack == true && canMove == true)
                     {
@@ -181,14 +180,14 @@ public class fjendeAi : MonoBehaviour
                 {
                     if (movinBack == false && canMove == true)
                     {
-                        if (Mathf.Floor(transform.position.y) == startingPoint.y) { movinBack = true; canMove = false; }
+                        float y = Mathf.Floor(transform.position.y * 10) / 10;
+                        if (y == startingPoint.y) { movinBack = true; canMove = false; }
                         transform.position = Vector3.MoveTowards(transform.position, startingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else if (movinBack == true && canMove == true)
                     {
-                        float y = Mathf.Floor(transform.position.y);
-                        y = transform.position.y - y;
-                        if (Mathf.Floor(transform.position.y) == finishingPoint.y && Mathf.Floor(y * 10) == finishingPoint.y) { movinBack = false; canMove = false; }
+                        float y = Mathf.Floor(transform.position.y * 10) / 10;
+                        if (y == finishingPoint.y) { movinBack = false; canMove = false; }
                         transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else
