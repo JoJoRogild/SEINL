@@ -339,12 +339,12 @@ PrefabInstance:
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 9.93
       objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 15.4
       objectReference: {fileID: 0}
     - target: {fileID: 2073164870874620387, guid: 9d3a8490b4b04e341baf646f7c77f4e9,
         type: 3}
@@ -550,12 +550,12 @@ PrefabInstance:
     - target: {fileID: 2879927621142503331, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503331, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503331, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
@@ -610,17 +610,37 @@ PrefabInstance:
     - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: finishingPoint.x
-      value: 0
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: startingPoint.x
-      value: 2
+      value: 11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: startingPoint.y
+      value: 9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: finishingPoint.y
+      value: 9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: startingPoint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879927621142503333, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
+        type: 3}
+      propertyPath: finishingPoint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2879927621142503334, guid: 5345bc83cbb10cc4ca96cfcaf73e2190,
         type: 3}
       propertyPath: m_Name
-      value: enemy
+      value: enemy (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5345bc83cbb10cc4ca96cfcaf73e2190, type: 3}

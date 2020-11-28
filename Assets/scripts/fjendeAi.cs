@@ -4,6 +4,7 @@ using UnityEngine;
 public class fjendeAi : MonoBehaviour
 {
 
+    public int fdgNumber;
     public LayerMask lmstart;
     public GameObject fuckDaGovernment;
     public float rotationSpeed;
@@ -58,7 +59,7 @@ public class fjendeAi : MonoBehaviour
                 {
                     if (movinBack == false && canMove == true)
                     {
-                        float x = Mathf.Floor(transform.position.x);
+                        float x = Mathf.Floor(transform.position.x * 10) / 10;
                         x = transform.position.x - x;
                         x *= 10;
                         if (Mathf.Floor(transform.position.x) == startingPoint.x && Mathf.Floor(x) == startingPoint.x) { movinBack = true; canMove = false; }
@@ -83,7 +84,6 @@ public class fjendeAi : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(movinBack);
                     if (movinBack == false && canMove == true)
                     {
                         if (transform.position.x == startingPoint.x) { movinBack = true; canMove = false; }
@@ -91,10 +91,8 @@ public class fjendeAi : MonoBehaviour
                     }
                     else if (movinBack == true && canMove == true)
                     {
-                        float x = Mathf.Floor(transform.position.x);
-                        x = transform.position.x - x;
-                        x *= 10;
-                        if (Mathf.Floor(transform.position.x) == finishingPoint.x && Mathf.Floor(x) == finishingPoint.x ) { movinBack = false; canMove = false; }
+                        float x = Mathf.Floor(transform.position.x * 10) / 10;
+                        if (x == finishingPoint.x) { movinBack = false; canMove = false; }
                         transform.position = Vector3.MoveTowards(transform.position, finishingPoint, patrolingSpeed * Time.deltaTime);
                     }
                     else
@@ -139,7 +137,7 @@ public class fjendeAi : MonoBehaviour
             }
             else if (State == state.returning)
             {
-                if(GameObject.Find("fuckDaGovernment(Clone)") == null) { Instantiate(fuckDaGovernment, startingPoint, Quaternion.identity); }
+                if(GameObject.Find("fuckDaGovernment(Clone)" + fdgNumber) == null) { GameObject idkfdg = Instantiate(fuckDaGovernment, startingPoint, Quaternion.identity); idkfdg.name = "fuckDaGovernment(Clone)" + fdgNumber; }
                 else
                 {
                     RaycastHit2D middle = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector2(180, 0)), Mathf.Infinity, lmstart);
